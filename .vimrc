@@ -2,6 +2,7 @@
 " Name: Lake ghandour
 " Date modified: 5-5-2022
 
+set noswapfile
 highlight Normal ctermbg=Black
 highlight NonText ctermbg=Black
 syntax on
@@ -13,16 +14,13 @@ set nu
 set autoindent
 set smartindent
 set smarttab
-set tabstop=4
-set noswapfile
-set noerrorbells
 set incsearch
 set expandtab
 set hlsearch
-set ignorecase
-set lazyredraw
-set linebreak
-set scrolloff=1
+set ignorecase "Ignores capitilization from search
+set lazyredraw  
+set linebreak "doesnt make lines go across window
+set scrolloff=1 
 set sidescrolloff=5
 set wrap
 set cursorline
@@ -30,24 +28,30 @@ set title
 set history=1000
 set nomodeline
 set laststatus=2
-set mouse=a
 set backspace=indent,eol,start
+set mouse=a
+set noerrorbells 
+set vb t_vb=
+
+" Make terminal open below file, terminal size 10x0
+set splitbelow
+set termwinsize=10x0
 
 "---Plugins---
 call plug#begin('~/.vim/plugged')
-Plug 'ycm-core/youcompleteme'
-Plug 'morhetz/gruvbox'
-Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'frazrepo/vim-rainbow'
-Plug 'mbbill/undotree'
-Plug 'chiel92/vim-autoformat'
-Plug 'uiiaoo/java-syntax.vim'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-fugitive'
+Plug 'ycm-core/youcompleteme' "Auto-completer!
+Plug 'morhetz/gruvbox' "Colorscheme
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } } "fuzzy finder
+Plug 'junegunn/fzf.vim' "fuzzy finder
+Plug 'preservim/nerdtree' "File finder
+Plug 'vim-airline/vim-airline' "aesthetic core uwu
+Plug 'vim-airline/vim-airline-themes' "Aesthetic core uwu pt.2
+Plug 'frazrepo/vim-rainbow' "Helps find brackets and stuff
+Plug 'mbbill/undotree' "Shows all previous changes saved on tree
+Plug 'chiel92/vim-autoformat' "Auto format
+Plug 'uiiaoo/java-syntax.vim' "Better java Syntax highlighting
+Plug 'mattn/emmet-vim' "Easier way to write html code
+Plug 'tpope/vim-fugitive' "Git commands in Vim
 call plug#end()
 
 "--Colorscheme aesthetic stuff--
@@ -56,6 +60,7 @@ set background=dark
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
+
 
 "----Basic Key Bindings----
 let g:mapleader = "'"
@@ -91,9 +96,6 @@ endfunction
 autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
 inoremap <expr> <CR> pumvisible() ? "\<c-y>" : "\<CR>"
 
-" Make terminal open below file, terminal size 10x0
-set splitbelow
-set termwinsize=10x0
 
 "---- Java development ----
 
@@ -111,6 +113,8 @@ let NERDTreeIgnore=['\.class$', '\~$'] "ignore .class files in NERDTree
 " Creates basic template for java files
 autocmd BufNewFile *.java 0r ~/.vim/templates/java.skel
 
+
+
 "---Python Dev----
 au BufNewFile,BufRead *.py
     \ set tabstop=4
@@ -124,6 +128,8 @@ au BufNewFile,BufRead *.py
 au BufRead,BufNewFile *.py,*.pyw  match BadWhitespace /\s\+$/    
 let g:ycm_autoclose_preview_window_after_completion=1
 let python_highlight_all=1
+
+
 
 "---Web Dev---
 autocmd BufNewFile *.html 0r ~/.vim/templates/html.skel

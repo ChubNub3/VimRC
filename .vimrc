@@ -1,4 +1,4 @@
-" VimRC: Optimized for java, python, and web development
+" VimRC 
 " Name: Lake ghandour
 " Date modified: 5-5-2022
 
@@ -8,6 +8,7 @@ syntax on
 filetype indent on
 filetype plugin on
 
+"--Vim Presets--
 set nu
 set autoindent
 set smartindent
@@ -16,7 +17,6 @@ set tabstop=4
 set noswapfile
 set noerrorbells
 set incsearch
-set vb t_vb=
 set expandtab
 set hlsearch
 set ignorecase
@@ -30,12 +30,10 @@ set title
 set history=1000
 set nomodeline
 set laststatus=2
-set backspace=indent,eol,start
-set clipboard+=unnamedplus
 set mouse=a
+set backspace=indent,eol,start
 
-
-" Plugins
+"---Plugins---
 call plug#begin('~/.vim/plugged')
 Plug 'ycm-core/youcompleteme'
 Plug 'morhetz/gruvbox'
@@ -59,19 +57,20 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
 
-
 "----Basic Key Bindings----
 let g:mapleader = "'"
 nnoremap <leader>w :wincmd w<CR>
 nnoremap <leader>g <c-w>v <CR>
-inoremap <expr> <CR> pumvisible() ? "\<c-y>" : "\<CR>"
-nnoremap <leader>a :NERDTreeToggle<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
+
 nnoremap <leader>n :tabnew<CR>
 nnoremap <leader>f :tabn<CR>
 nnoremap <leader>t :term <CR>
+
 inoremap jj <esc>
 vnoremap jj <esc>
+
+nnoremap <leader>a :NERDTreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 "Disable/Enable auto-comment
 nmap <leader>c :setlocal formatoptions-=cro<CR>
@@ -81,7 +80,16 @@ nmap <leader>C :setlocal formatoptions=cro<CR>
 nnoremap <c-j> :!javac % && java %:r  <CR>
 nnoremap <c-p> <CR> :!clear;python3 % <CR>
 
+"-- YCM Configs--
 nnoremap <leader>d :YcmCompleter GoToDefinition <CR>
+function! s:CustomizeYcmQuickFixWindow()
+  " Move the window to the top of the screen.
+  wincmd K
+  " Set the window height to 5.
+  5wincmd _
+endfunction
+autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
+inoremap <expr> <CR> pumvisible() ? "\<c-y>" : "\<CR>"
 
 " Make terminal open below file, terminal size 10x0
 set splitbelow
@@ -103,15 +111,6 @@ let NERDTreeIgnore=['\.class$', '\~$'] "ignore .class files in NERDTree
 " Creates basic template for java files
 autocmd BufNewFile *.java 0r ~/.vim/templates/java.skel
 
-function! s:CustomizeYcmQuickFixWindow()
-  " Move the window to the top of the screen.
-  wincmd K
-  " Set the window height to 5.
-  5wincmd _
-endfunction
-
-autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
-
 "---Python Dev----
 au BufNewFile,BufRead *.py
     \ set tabstop=4
@@ -127,7 +126,6 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let python_highlight_all=1
 
 "---Web Dev---
-
 autocmd BufNewFile *.html 0r ~/.vim/templates/html.skel
 
 au BufNewFile,BufRead *.js, *.html, *.css

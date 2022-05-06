@@ -1,7 +1,6 @@
 " VimRC: Optimized for java, python, and web development
 " Name: Lake ghandour
 " Date modified: 5-5-2022
-" Lines: 135
 
 highlight Normal ctermbg=Black
 highlight NonText ctermbg=Black
@@ -73,6 +72,7 @@ nnoremap <leader>f :tabn<CR>
 nnoremap <leader>t :term <CR>
 inoremap jj <esc>
 vnoremap jj <esc>
+
 "Disable/Enable auto-comment
 nmap <leader>c :setlocal formatoptions-=cro<CR>
 nmap <leader>C :setlocal formatoptions=cro<CR>
@@ -80,7 +80,6 @@ nmap <leader>C :setlocal formatoptions=cro<CR>
 " compile file in vim editor
 nnoremap <c-j> :!javac % && java %:r  <CR>
 nnoremap <c-p> <CR> :!clear;python3 % <CR>
-nnoremap <leader>b <CR> :! ./ % <CR>
 
 nnoremap <leader>d :YcmCompleter GoToDefinition <CR>
 
@@ -89,6 +88,15 @@ set splitbelow
 set termwinsize=10x0
 
 "---- Java development ----
+
+au BufNewFile,BufRead *.java
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 let g:syntastic_java_checkers = []
 let NERDTreeIgnore=['\.class$', '\~$'] "ignore .class files in NERDTree
 
@@ -129,8 +137,4 @@ au BufNewFile,BufRead *.js, *.html, *.css
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-
 let g:user_emmet_leader_key='<C-E>'
-
-
-

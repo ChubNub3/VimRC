@@ -67,6 +67,8 @@ let g:lightline = {
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 let g:UltiSnipsExpandTrigger="s"
 
+" change
+
 "----Basic Key Bindings----
 let g:mapleader = "'"
 nnoremap <leader>w :wincmd w<CR>

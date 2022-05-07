@@ -64,10 +64,9 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
 
-let g:UltiSnipsExpandTrigger="<c-s>" 
-let g:UltiSnipsJumpForwardTrigger="<c-l>" 
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="s"
+
 "----Basic Key Bindings----
 let g:mapleader = "'"
 nnoremap <leader>w :wincmd w<CR>

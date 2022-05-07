@@ -39,6 +39,7 @@ set termwinsize=10x0
 
 "---Plugins---
 call plug#begin('~/.vim/plugged')
+
 Plug 'ycm-core/youcompleteme' "Auto-completer!
 Plug 'morhetz/gruvbox' "Colorscheme
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } } "fuzzy finder
@@ -52,6 +53,8 @@ Plug 'chiel92/vim-autoformat' "Auto format
 Plug 'uiiaoo/java-syntax.vim' "Better java Syntax highlighting
 Plug 'mattn/emmet-vim' "Easier way to write html code
 Plug 'tpope/vim-fugitive' "Git commands in Vim
+Plug 'honza/vim-snippets' " Snippets !!
+Plug 'SirVer/ultisnips' " Snippet engine  
 call plug#end()
 
 "--Colorscheme aesthetic stuff--
@@ -61,7 +64,10 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
 
-
+let g:UltiSnipsExpandTrigger="<c-s>" 
+let g:UltiSnipsJumpForwardTrigger="<c-l>" 
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "----Basic Key Bindings----
 let g:mapleader = "'"
 nnoremap <leader>w :wincmd w<CR>
@@ -99,21 +105,13 @@ inoremap <expr> <CR> pumvisible() ? "\<c-y>" : "\<CR>"
 
 "---- Java development ----
 
-au BufNewFile,BufRead *.java
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
 let g:syntastic_java_checkers = []
 let NERDTreeIgnore=['\.class$', '\~$'] "ignore .class files in NERDTree
 
 " Creates basic template for java files
 autocmd BufNewFile *.java 0r ~/.vim/templates/java.skel
 
-
+nnoremap <leader>F :Autoformat<CR>
 
 "---Python Dev----
 au BufNewFile,BufRead *.py

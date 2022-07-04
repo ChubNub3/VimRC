@@ -1,6 +1,6 @@
 " VimRC 
 " Name: Lake ghandour
-" Date modified: 5-7-2022
+" Date modified: 7-2-2022
 
 highlight Normal ctermbg=Black
 highlight NonText ctermbg=Black
@@ -32,6 +32,7 @@ set mouse=a
 set noerrorbells 
 set vb t_vb=
 set noswapfile
+set tabstop=2
 
 " Make terminal open below file, terminal size 10x0
 set splitbelow
@@ -55,6 +56,7 @@ Plug 'mattn/emmet-vim' "Easier way to write html code
 Plug 'tpope/vim-fugitive' "Git commands in Vim
 Plug 'honza/vim-snippets' " Snippets !!
 Plug 'SirVer/ultisnips' " Snippet engine  
+Plug 'tpope/vim-commentary' "Commentary Stuff
 call plug#end()
 
 "--Colorscheme aesthetic stuff--
@@ -63,7 +65,6 @@ set background=dark
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
-
 
 
 "----Basic Key Bindings----
@@ -89,8 +90,11 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <c-j> :!javac % && java %:r  <CR>
 nnoremap <c-p> <CR> :!clear;python3 % <CR>
 
+"Vim commentary
+nmap <leader>c <Plug>CommentaryLine
+xmap <leader>c <Plug>Commentary
 
-"-- YCM and Snippet Configs--
+"-- YCM, Snippet and autoformat  Configs--
 
 nnoremap <leader>d :YcmCompleter GoToDefinition <CR>
 function! s:CustomizeYcmQuickFixWindow()
@@ -117,10 +121,11 @@ let NERDTreeIgnore=['\.class$', '\~$'] "ignore .class files in NERDTree
 autocmd BufNewFile *.java 0r ~/.vim/templates/java.skel
 
 "---Python Dev----
+
 au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
     \ set textwidth=79
     \ set expandtab
     \ set autoindent
@@ -138,6 +143,3 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set softtabstop=2
     \ set shiftwidth=2
 
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-let g:user_emmet_leader_key='<C-E>'

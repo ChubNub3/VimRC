@@ -1,46 +1,69 @@
-" VimRC 
-" Name: Lake ghandour
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
+"               
+"               ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+"               ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+"               ██║   ██║██║██╔████╔██║██████╔╝██║     
+"               ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║     
+"                ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+"               
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Date modified: 7-2-2022
 
 highlight Normal ctermbg=Black
 highlight NonText ctermbg=Black
 filetype indent on
 filetype plugin on
+set noswapfile
 syntax on
 
 "--Vim Presets--
 set nu
+set cursorline
+
+set cursorcolumn
 set autoindent
 set smartindent
+
 set smarttab
-set incsearch
+set tabstop=2
 set expandtab
+set backspace=indent,eol,start
+
+set incsearch
 set hlsearch
 set ignorecase "Ignores capitilization from search
+
 set lazyredraw  
 set linebreak "doesnt make lines go across window
+
 set scrolloff=1 
 set sidescrolloff=5
 set wrap
-set cursorline
 set title
-set history=1000
 set nomodeline
-set laststatus=2
-set backspace=indent,eol,start
 set mouse=a
+
+set laststatus=2
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+set statusline+=%=
+set statusline+=\ %F\ %M\ %Y\ %R
+
 set noerrorbells 
 set vb t_vb=
-set noswapfile
-set tabstop=2
+set history=1000
 
 " Make terminal open below file, terminal size 10x0
 set splitbelow
-set termwinsize=10x0
+set termwinsize=5x0
+
+set wildmenu
+set wildmode=list:longest
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx,*.class
 
 "---Plugins---
 call plug#begin('~/.vim/plugged')
-
 Plug 'ycm-core/youcompleteme' "Auto-completer!
 Plug 'morhetz/gruvbox' "Colorscheme
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } } "fuzzy finder
@@ -52,7 +75,6 @@ Plug 'frazrepo/vim-rainbow' "Helps find brackets and stuff
 Plug 'mbbill/undotree' "Shows all previous changes saved on tree
 Plug 'chiel92/vim-autoformat' "Auto format
 Plug 'uiiaoo/java-syntax.vim' "Better java Syntax highlighting
-Plug 'mattn/emmet-vim' "Easier way to write html code
 Plug 'tpope/vim-fugitive' "Git commands in Vim
 Plug 'honza/vim-snippets' " Snippets !!
 Plug 'SirVer/ultisnips' " Snippet engine  
@@ -78,6 +100,7 @@ nnoremap <leader>g <c-w>v <CR>
 nnoremap <leader>n :tabnew<CR>
 nnoremap <leader>f :tabn<CR>
 nnoremap <leader>t :term <CR>
+nnoremap <leader>o <c-\><c-N> <CR>
 
 "Disable/Enable auto-comment
 nmap <leader>c :setlocal formatoptions-=cro<CR>
@@ -136,6 +159,7 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let python_highlight_all=1
 
 "---Web Dev---
+
 autocmd BufNewFile *.html 0r ~/.vim/templates/html.skel
 
 au BufNewFile,BufRead *.js, *.html, *.css
